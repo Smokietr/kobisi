@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('companies_packages', function (Blueprint $table) {
-            $table->bigInteger('id');
+            $table->bigInteger('id')->autoIncrement();
             $table->integer('company')->index();
             $table->integer('package')->index();
             $table->timestamps();
