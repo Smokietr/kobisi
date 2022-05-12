@@ -14,15 +14,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('packages', function (Blueprint $table) {
-            $table->id()->index();
-            $table->string('package');
-            $table->integer('day');
-            $table->float('amount', 8, 2);
+        Schema::create('companies_packages', function (Blueprint $table) {
+            $table->bigInteger('id')->autoIncrement();
+            $table->integer('company')->index();
+            $table->integer('package')->index();
+            $table->dateTime('expiration_date')->nullable();
             $table->timestamps();
         });
 
-        Artisan::call('db:seed', array('--class' => 'PackagesSeeder'));
+        Artisan::call('db:seed', array('--class' => 'CompaniesPackageSeeder'));
 
     }
 
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('packages');
+        Schema::dropIfExists('companies_packages');
     }
 };

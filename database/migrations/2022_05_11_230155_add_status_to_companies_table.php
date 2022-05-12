@@ -13,11 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('companies_packages', function (Blueprint $table) {
-            $table->bigInteger('id')->autoIncrement();
-            $table->integer('company')->index();
-            $table->integer('package')->index();
-            $table->timestamps();
+        Schema::table('companies', function (Blueprint $table) {
+            $table->boolean('status')->default(1)->after('site_url');
         });
     }
 
@@ -28,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('companies_packages');
+        Schema::table('companies', function (Blueprint $table) {
+            //
+        });
     }
 };
